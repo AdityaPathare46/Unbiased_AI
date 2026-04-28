@@ -25,7 +25,18 @@ import json
 # Initialize database tables
 models.Base.metadata.create_all(bind=engine)
 
+import traceback
+from fastapi.responses import JSONResponse
+from fastapi import Request
+
 app = FastAPI(title="Unbiased AI 2.0")
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(
+        status_code=500,
+        content={"message": "Internal Server Error", "traceback": traceback.format_exc()}
+    )
 
 app.add_middleware(
     CORSMiddleware,
