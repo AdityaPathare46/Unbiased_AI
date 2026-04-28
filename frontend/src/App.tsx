@@ -19,7 +19,7 @@ import DemographicsView from './components/DemographicsView';
 import AuditMetadataBar from './components/AuditMetadataBar';
 import AuthView from './components/AuthView';
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');

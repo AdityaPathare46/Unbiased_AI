@@ -32,7 +32,8 @@ const ActiveMitigationLab: React.FC<ActiveMitigationLabProps> = ({ auditContext 
     formData.append('features', `${protectedAttr},${target}`);
 
     try {
-      const res = await axios.post('http://localhost:8000/remediate', formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const res = await axios.post(`${API_BASE}/remediate`, formData);
       setCode(res.data.code);
     } catch (err) {
       setCode("# Failed to generate mitigation code. Please check your Gemini API key.");

@@ -19,7 +19,8 @@ const ScenarioSimulator: React.FC<ScenarioSimulatorProps> = ({ auditContext }) =
       formData.append('strategy', `Threshold Optimizer (Alpha=${alpha})`);
       formData.append('features', auditContext?.metadata?.protected || 'protected_attribute');
       
-      const res = await axios.post('http://localhost:8000/remediate', formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const res = await axios.post(`${API_BASE}/remediate`, formData);
       setGeneratedCode(res.data.code);
     } catch (err) {
       setGeneratedCode("# Failed to connect to remediation engine.");
