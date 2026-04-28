@@ -25,7 +25,8 @@ const ConversationalAuditor: React.FC<ConversationalAuditorProps> = ({ auditCont
     formData.append('context', JSON.stringify(auditContext));
 
     try {
-      const res = await axios.post('http://localhost:8000/chat', formData);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+      const res = await axios.post(`${API_BASE}/chat`, formData);
       setMessages(prev => [...prev, { role: 'bot', text: res.data.response }]);
     } catch (err) {
       setMessages(prev => [...prev, { role: 'bot', text: "Service connection lost." }]);
