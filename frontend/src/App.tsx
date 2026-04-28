@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, Cpu, Award, TrendingUp, AlertTriangle, CheckCircle, Info, Shield, Users } from 'lucide-react';
+import { Lock, Cpu, Award, AlertTriangle, CheckCircle, Info, Shield, Users } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import AuditWizard from './components/AuditWizard';
 import BiasChart from './components/BiasChart';
@@ -12,6 +12,7 @@ import AuditReportView from './components/AuditReportView';
 import EthicalFingerprint from './components/EthicalFingerprint';
 import ComparisonLab from './components/ComparisonLab';
 import FuturePotential from './components/FuturePotential';
+import ActiveMitigationLab from './components/ActiveMitigationLab';
 import AuditRequiredState from './components/AuditRequiredState';
 import PrivacyShieldView from './components/PrivacyShieldView';
 import DemographicsView from './components/DemographicsView';
@@ -30,7 +31,7 @@ function App() {
   
   // Auth State
   const [currentUser, setCurrentUser] = useState<any>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -274,15 +275,8 @@ function App() {
           {activeTab === 'mitigation' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} key="mitigation">
                <h1 className="section-title">Mitigation & Roadmap</h1>
-               <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-                  <div className="glass-card">
-                    <h2 style={{ marginBottom: '16px' }}>Regulatory Drift Monitor</h2>
-                    <p style={{ color: 'var(--apple-text-muted)', marginBottom: '32px' }}>This feature is architected for real-time model monitoring and will serve as the governance node for live AI deployment.</p>
-                    <div style={{ padding: '60px', border: '1px dashed var(--glass-border)', borderRadius: '12px', textAlign: 'center' }}>
-                       <TrendingUp size={48} color="var(--apple-grey-700)" />
-                       <p style={{ marginTop: '16px', color: 'var(--apple-text-muted)' }}>Awaiting Live API Connection...</p>
-                    </div>
-                  </div>
+               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
+                  <ActiveMitigationLab auditContext={data} />
                   <FuturePotential />
                </div>
             </motion.div>

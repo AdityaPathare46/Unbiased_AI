@@ -1,4 +1,5 @@
-import { RefreshCcw, Sliders, TrendingDown, Loader2, Code } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sliders, TrendingDown, Loader2, Code } from 'lucide-react';
 import axios from 'axios';
 
 interface ScenarioSimulatorProps {

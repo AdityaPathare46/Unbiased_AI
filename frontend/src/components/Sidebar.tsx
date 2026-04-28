@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, LayoutDashboard, Search, Settings, Users, BarChart3, LogOut } from 'lucide-react';
+import { Shield, LayoutDashboard, Search, Users, BarChart3, LogOut } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
